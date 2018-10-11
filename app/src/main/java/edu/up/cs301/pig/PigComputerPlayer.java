@@ -6,6 +6,7 @@ import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.actionMsg.GameAction;
 import edu.up.cs301.game.infoMsg.GameInfo;
 import edu.up.cs301.game.infoMsg.GameState;
+import edu.up.cs301.game.infoMsg.StartGameInfo;
 import edu.up.cs301.game.util.Tickable;
 
 /**
@@ -32,7 +33,10 @@ public class PigComputerPlayer extends GameComputerPlayer {
     @Override
     protected void receiveInfo(GameInfo info) {
         if(info instanceof PigGameState) {
+
             if(((PigGameState) info).getTurn() != super.playerNum) return;
+
+            sleep(1000);
 
             if(new Random().nextBoolean()) super.game.sendAction(new PigHoldAction(this));
             else super.game.sendAction(new PigRollAction(this));

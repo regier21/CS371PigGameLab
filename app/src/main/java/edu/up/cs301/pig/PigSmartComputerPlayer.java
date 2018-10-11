@@ -32,17 +32,24 @@ public class PigSmartComputerPlayer extends GameComputerPlayer {
     @Override
     protected void receiveInfo(GameInfo info) {
         if(info instanceof PigGameState) {
+
             PigGameState state = (PigGameState) info;
             if(state.getTurn() != super.playerNum) return;
 
-            int score;
+            sleep(1000);
+
+            int score, oppScore;
             if (super.playerNum == 0){
                 score = state.getScore_p1();
+                oppScore = state.getScore_p2();
             } else {
                 score = state.getScore_p2();
+                oppScore = state.getScore_p1();
             }
 
-            if(score >= 20) super.game.sendAction(new PigHoldAction(this));
+            if (50 - score < state.getTotal()) super.game.sendAction(new PigHoldAction(this));
+            else if (oppScore > 30) super.game.sendAction(new PigRollAction(this));
+            else if(state.getTotal() >= 20) super.game.sendAction(new PigHoldAction(this));
             else super.game.sendAction(new PigRollAction(this));
         }
     }//receiveInfo

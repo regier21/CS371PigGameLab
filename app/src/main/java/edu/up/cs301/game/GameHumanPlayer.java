@@ -100,7 +100,6 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 	 * knows what their game-position and opponents' names are.
 	 */
 	protected void initAfterReady() {
-		// by default, we do nothing
 	}
 	
 	/**

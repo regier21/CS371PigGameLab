@@ -49,6 +49,7 @@ public class PigLocalGame extends LocalGame {
                     pigGameState.setScore_p1(pigGameState.getScore_p1() + pigGameState.getTotal());
                     break;
                 case (1):
+
                     pigGameState.setScore_p2(pigGameState.getScore_p2() + pigGameState.getTotal());
                     break;
             }
