@@ -11,15 +11,15 @@ import edu.up.cs301.game.util.Tickable;
 /**
  * An AI for Pig
  *
- * @author Andrew M. Nuxoll
- * @version August 2015
+ * @author Team Rocket
+ * @version October 2018
  */
-public class PigComputerPlayer extends GameComputerPlayer {
+public class PigSmartComputerPlayer extends GameComputerPlayer {
 
     /**
      * ctor does nothing extra
      */
-    public PigComputerPlayer(String name) {
+    public PigSmartComputerPlayer(String name) {
         super(name);
     }
 
@@ -32,9 +32,17 @@ public class PigComputerPlayer extends GameComputerPlayer {
     @Override
     protected void receiveInfo(GameInfo info) {
         if(info instanceof PigGameState) {
-            if(((PigGameState) info).getTurn() != super.playerNum) return;
+            PigGameState state = (PigGameState) info;
+            if(state.getTurn() != super.playerNum) return;
 
-            if(new Random().nextBoolean()) super.game.sendAction(new PigHoldAction(this));
+            int score;
+            if (super.playerNum == 0){
+                score = state.getScore_p1();
+            } else {
+                score = state.getScore_p2();
+            }
+
+            if(score >= 20) super.game.sendAction(new PigHoldAction(this));
             else super.game.sendAction(new PigRollAction(this));
         }
     }//receiveInfo

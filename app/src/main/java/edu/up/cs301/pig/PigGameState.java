@@ -36,6 +36,10 @@ public class PigGameState extends GameState {
         this.turn = turn;
     }
 
+    public void swapTurn(){
+        this.turn = 1 - this.turn;
+    }
+
     public int getScore_p1() {
         return score_p1;
     }
